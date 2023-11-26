@@ -1,0 +1,17 @@
+.main {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    font-size: xx-large;
+    font-style: bold;
+    flex: 1 1 auto;
+    text-align: center;
+}
+
+.nav-button {
+    margin: 6px;
+    a { text-decoration: none; }
+}
