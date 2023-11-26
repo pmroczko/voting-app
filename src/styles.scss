@@ -1,9 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
-@use '@angular/material' as mat;
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 
+$color-primary: rgb(88, 88, 214);
+
 .component-header {
-    font-size: x-large;
+    font-size: xx-large;
     text-align: center;    
     font-weight: bolder;
+    color: $color-primary;
+}
+
+.component-table {
+    text-align: left;
+    th {
+        font-weight: bold;
+        font-size:large
+    }
+    td {
+        color: $color-primary;
+    }
+    .column-centered {
+        text-align: center;;
+    }
+    width: 100%;
 }
