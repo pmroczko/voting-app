@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { DataService } from '../services/data.service';
+import { MatButtonModule } from '@angular/material/button';
 
 interface SelectVoter {
   value: string;
@@ -13,7 +14,7 @@ interface SelectVoter {
 @Component({
   selector: 'app-vote',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, MatSelectModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, MatFormFieldModule, MatSelectModule, MatButtonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './vote.component.html',
   styleUrl: './vote.component.scss'
 })

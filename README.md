@@ -1,6 +1,8 @@
 # VotingApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+This is example Angular application made by Paweł Mroczkowski, November 2023.
+Contact: mroczkowsky@gmail.com
 
 ## Development server
 

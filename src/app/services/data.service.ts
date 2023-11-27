@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Candidate, Voter } from "../models";
-import { Observable, Subject, delay, interval, merge, of, pipe, take, timer } from "rxjs";
+import { Observable, Subject, interval } from "rxjs";
 
 const MOCKED_VOTERS = [
-    { name: 'John Smith', hasVoted: false },
-    { name: 'Will Smith', hasVoted: true },
+    { name: 'John Smith', hasVoted: true },
+    { name: 'Will Smith', hasVoted: false },
     { name: 'Fred Flintstone', hasVoted: false }
 ]
 
 const MOCKED_CANDIDATES = [
-    { name: 'George Washington', votes: 0 },
+    { name: 'George Washington', votes: 1 },
     { name: 'Thomas Jefferson', votes: 0 }
 ]
 
@@ -62,8 +62,9 @@ export class DataService {
     }
 
     addRandomVoter(): void {
+        //TODO: we could check if random name is already in use
         var name = this._getRandomName();
-        var hasVoted = Math.floor(Math.random()*2) > 0;
+        var hasVoted = false; //Math.floor(Math.random() * 2) > 0;
         this.addVoter({ name, hasVoted });
     }
 
@@ -76,7 +77,7 @@ export class DataService {
     vote(voter: string, candidate: string): boolean {
         var currentVoter = this.currentVoters.find(v => v.name === voter);
         var currentCandidate = this.currentCandidates.find(c => c.name === candidate);
-        if(!currentVoter || !currentCandidate || currentVoter.hasVoted){
+        if (!currentVoter || !currentCandidate || currentVoter.hasVoted) {
             return false;
         }
         currentVoter.hasVoted = true;

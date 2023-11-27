@@ -1,18 +1,20 @@
-<p>Vote!</p>
 <div class="component-content">
+    <div class="component-header">
+        <div>Vote!</div>
+    </div>
     <form>
-        <select matNativeControl [(ngModel)]="selectedVoter" name="voter">
+        <select matNativeControl [(ngModel)]="selectedVoter" name="voter" class="voting-select">
             <option value="defaultValue" disabled selected>I am</option>
             @for (voter of voterList; track voter) {
             <option [value]="voter">{{voter}}</option>
             }
         </select>
-        <select matNativeControl [(ngModel)]="selectedCandidate" name="candidate">
+        <select matNativeControl [(ngModel)]="selectedCandidate" name="candidate" class="voting-select">
             <option value="defaultValue" disabled selected>I vote for</option>
             @for (candidate of candidateList; track candidate) {
             <option [value]="candidate">{{candidate}}</option>
             }
         </select>
-        <input type="submit" value="Submit" (click)="onSubmit()" />
+        <button mat-raised-button class="voting-submit" (click)="onSubmit()" color="primary">Submit</button>
     </form>
 </div>
