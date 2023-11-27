@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Voter } from '../models';
 import { DataService } from '../services/data.service';
 
@@ -17,15 +17,20 @@ import { DataService } from '../services/data.service';
 export class VotersComponent{
 
   private _dataService: DataService;
-  displayedColumns = ['name', 'hasVoted'];
-  voters: Voter[] = [];
+  fieldColumns = ['name', 'hasVoted'];  
+  displayedColumns = this.fieldColumns.concat('headerButton');
+  voters: MatTableDataSource<Voter> = new MatTableDataSource<Voter>();
 
   constructor(private dataService: DataService) {
-    this._dataService = dataService;
-    
+    this._dataService = dataService;    
     this._dataService.getVoters().subscribe(voters => {
-      this.voters = voters;
+      this.voters.data = voters;
     })
+  }
+
+  i: number = 0;
+  onAdd() {
+    this._dataService.addVoter({name: 'name '+(this.i++), 'hasVoted': false});
   }
 
 }

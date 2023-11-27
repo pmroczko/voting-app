@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Voter } from "../models";
-import { Observable, merge, of } from "rxjs";
+import { Observable, Subject, delay, interval, merge, of, pipe, take, timer } from "rxjs";
 
 const MOCKED_VOTERS = [ 
     {name: 'John Smith', hasVoted: false}, 
@@ -11,14 +11,25 @@ const MOCKED_VOTERS = [
 @Injectable({providedIn: 'root'})
 export class DataService {
 
-    currentVoters$: Observable<Voter[]>;
-    
+    currentVoters: Voter[] = MOCKED_VOTERS;
+    subject$: Subject<Voter[]>;
+
     constructor()
     {
-        this.currentVoters$ = of(MOCKED_VOTERS);
+        this.subject$ = new Subject<Voter[]>();
+        timer(1000).subscribe(() => {            
+            this.subject$.next(this.currentVoters);
+        })
     }
 
     getVoters(): Observable<Voter[]> {
-        return this.currentVoters$;
+        return this.subject$.asObservable();
     }
+
+    addVoter(newVoter: Voter): void{
+        this.currentVoters.push(newVoter);
+        this.subject$.next(this.currentVoters);
+    }
+
+
 }
