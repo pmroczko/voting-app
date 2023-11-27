@@ -3,3 +3,8 @@ export interface Voter {
     name: string;
     hasVoted: boolean;
 }
+
+export interface Candidate {
+    name: string;
+    votes: number;
+}

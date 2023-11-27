@@ -8,22 +8,22 @@ import { VoteComponent } from "../vote/vote.component";
 
 
 @Component({
-    selector: 'app-voters',
-    standalone: true,
-    providers: [DataService],
-    templateUrl: './voters.component.html',
-    styleUrl: './voters.component.scss',
-    imports: [CommonModule, MatTableModule, MatButtonModule, VoteComponent]
+  selector: 'app-voters',
+  standalone: true,
+  providers: [DataService],
+  templateUrl: './voters.component.html',
+  styleUrl: './voters.component.scss',
+  imports: [CommonModule, MatTableModule, MatButtonModule, VoteComponent]
 })
 
-export class VotersComponent{
+export class VotersComponent {
   private _dataService: DataService;
-  fieldColumns = ['name', 'hasVoted'];  
+  fieldColumns = ['name', 'hasVoted'];
   displayedColumns = this.fieldColumns.concat('headerButton');
   voters: MatTableDataSource<Voter> = new MatTableDataSource<Voter>();
 
   constructor(private dataService: DataService) {
-    this._dataService = dataService;    
+    this._dataService = dataService;
     this._dataService.getVoters().subscribe(voters => {
       this.voters.data = voters;
     })
