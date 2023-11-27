@@ -1,21 +1,22 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 import { Voter } from '../models';
 import { DataService } from '../services/data.service';
+import { VoteComponent } from "../vote/vote.component";
 
 
 @Component({
-  selector: 'app-voters',
-  standalone: true,
-  imports: [CommonModule, MatTableModule],
-  providers: [DataService],
-  templateUrl: './voters.component.html',
-  styleUrl: './voters.component.scss'
+    selector: 'app-voters',
+    standalone: true,
+    providers: [DataService],
+    templateUrl: './voters.component.html',
+    styleUrl: './voters.component.scss',
+    imports: [CommonModule, MatTableModule, MatButtonModule, VoteComponent]
 })
 
 export class VotersComponent{
-
   private _dataService: DataService;
   fieldColumns = ['name', 'hasVoted'];  
   displayedColumns = this.fieldColumns.concat('headerButton');
@@ -28,9 +29,7 @@ export class VotersComponent{
     })
   }
 
-  i: number = 0;
   onAdd() {
-    this._dataService.addVoter({name: 'name '+(this.i++), 'hasVoted': false});
+    this._dataService.addRandomVoter();
   }
-
 }

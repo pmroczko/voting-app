@@ -1,5 +1,10 @@
 <div class="component-content">
-    <div class="component-header">Voters</div>
+    <div class="component-header">
+        <div>Voters</div> 
+        <div class="header-button" >
+            <button mat-mini-fab color="primary" (click)="onAdd()">+</button>
+        </div>
+    </div>
     <table mat-table [dataSource]="voters" class="component-table mat-elevation-z8">
 
         <ng-container matColumnDef="name">
@@ -13,10 +18,14 @@
         </ng-container>
 
         <ng-container matColumnDef="headerButton">
-            <th mat-header-cell *matHeaderCellDef class="column-centered"> <button (click)="onAdd()">+</button> </th>
+            <th mat-header-cell *matHeaderCellDef class="column-centered">  </th>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let myRowData; columns: fieldColumns"></tr>
     </table>
+
+    <div class="component-footer">
+        <app-vote></app-vote>
+    </div>
 </div>

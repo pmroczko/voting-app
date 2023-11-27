@@ -1,1 +1,12 @@
-<p>vote works!</p>
+<p>Vote!</p>
+<div class="component-content">
+    <form (click)="onSubmit()">
+        <select matNativeControl [(ngModel)]="selectedVoter" name="voter">
+            <option value="defaultValue" selected>I am</option>
+            @for (voter of voterList; track voter) {
+              <option [value]="voter">{{voter}}</option>
+            }
+          </select>
+          <input type="submit" value="Submit"/>
+    </form>
+</div>
