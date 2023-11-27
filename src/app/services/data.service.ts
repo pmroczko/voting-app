@@ -31,7 +31,7 @@ export class DataService {
         this.voters$ = new Subject<Voter[]>();
         this.candidates$ = new Subject<Candidate[]>();
 
-        interval(1000).subscribe(() => {
+        interval(500).subscribe(() => {
             this.voters$.next(this.currentVoters);
             this.candidates$.next(this.currentCandidates);
         })

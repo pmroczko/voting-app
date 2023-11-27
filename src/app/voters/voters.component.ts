@@ -19,7 +19,6 @@ import { VoteComponent } from "../vote/vote.component";
 export class VotersComponent {
   private _dataService: DataService;
   fieldColumns = ['name', 'hasVoted'];
-  displayedColumns = this.fieldColumns.concat('headerButton');
   voters: MatTableDataSource<Voter> = new MatTableDataSource<Voter>();
 
   constructor(private dataService: DataService) {

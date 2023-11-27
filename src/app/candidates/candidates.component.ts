@@ -16,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 export class CandidatesComponent {
   private _dataService: DataService;
   fieldColumns = ['name', 'votes'];
-  displayedColumns = this.fieldColumns.concat('headerButton');
   candidates: MatTableDataSource<Candidate> = new MatTableDataSource<Candidate>();
 
   constructor(private dataService: DataService) {
