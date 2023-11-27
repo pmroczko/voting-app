@@ -31,7 +31,7 @@ export class DataService {
         this.voters$ = new Subject<Voter[]>();
         this.candidates$ = new Subject<Candidate[]>();
 
-        timer(1000).subscribe(() => {
+        interval(1000).subscribe(() => {
             this.voters$.next(this.currentVoters);
             this.candidates$.next(this.currentCandidates);
         })
@@ -71,5 +71,18 @@ export class DataService {
         var name = this._getRandomName();
         var votes = 0;
         this.addCandidate({ name, votes });
+    }
+
+    vote(voter: string, candidate: string): boolean {
+        var currentVoter = this.currentVoters.find(v => v.name === voter);
+        var currentCandidate = this.currentCandidates.find(c => c.name === candidate);
+        if(!currentVoter || !currentCandidate || currentVoter.hasVoted){
+            return false;
+        }
+        currentVoter.hasVoted = true;
+        currentCandidate.votes++;
+        this.voters$.next(this.currentVoters);
+        this.candidates$.next(this.currentCandidates);
+        return true;
     }
 }

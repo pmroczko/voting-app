@@ -30,9 +30,17 @@ export class VoteComponent {
     this._dataService.getVoters().subscribe(voters => {
       this.voterList = voters.map(v => v.name);
     })
+    this._dataService.getCandidates().subscribe(candidate => {
+      this.candidateList = candidate.map(c => c.name);
+    })
   }
 
   onSubmit(): void {
-    console.log(`onSubmit, selected voter is ${this.selectedVoter}, selected candidate is ${this.selectedCandidate}`);
+    var result = this._dataService.vote(this.selectedVoter, this.selectedCandidate);
+    if(result){
+      console.log(`${this.selectedVoter} voted for ${this.selectedCandidate} successfully!`);
+    } else {
+      console.error(`Vote was not successful!`);
+    }
   }
 }

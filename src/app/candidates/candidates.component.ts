@@ -22,6 +22,7 @@ export class CandidatesComponent {
   constructor(private dataService: DataService) {
     this._dataService = dataService;
     this._dataService.getCandidates().subscribe(candidates => {
+      console.log(`Getting candidates?`);
       this.candidates.data = candidates;
     })
   }
